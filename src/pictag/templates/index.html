@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pic-Sensei: 画像自動タグ付けアプリ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .tags-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tag-item {
+      background: #eee;
+      padding: 5px 10px;
+      margin: 5px;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .probability {
+      font-weight: bold;
+      color: green;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>PicTag (画像自動タグ付け)</h1>
+
+  <form method="POST" action="{{ url_for('upload', _method='POST') }}" enctype="multipart/form-data">
+    <input type="file" name="file" accept="image/*" required>
+    <button type="submit">タグ付けを実行</button>
+  </form>
+
+  <hr>
+
+  {% if error_message %}
+  <p style="color: red;">{{ error_message }}</p>
+  {% endif %}
+
+  {% if tags %}
+  <h2>✨ 推論結果 (MobileNetV2)</h2>
+  <ul class="tags-list">
+    {% for tag in tags %}
+    <li class="tag-item">
+      {{ tag.label }}
+      <span class="probability">({{ tag.probability }}%)</span>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <p>※セキュリティ上の理由から、アップロードされた画像そのものの表示は省略しています。</p>
+
+  {% endif %}
+</body>
+
+</html>
