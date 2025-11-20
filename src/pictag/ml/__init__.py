@@ -24,7 +24,7 @@ preprocess = transforms.Compose([
 
 # ラベルリストを準備
 labels = []
-with importlib.resources.files("pictag.ml").joinpath("imagenet_classes.txt").open("r", encoding="utf-8") as f:
+with open("imagenet_classes.txt", "r", encoding="utf-8") as f:
     labels = [line.strip() for line in f.readlines()]
 
 def get_image_tags(image_path, model, preprocess, top_k=3):

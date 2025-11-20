@@ -16,3 +16,6 @@ requires-python = ">= 3.10"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+pictag = ["templates/*.html", "static/*"]
