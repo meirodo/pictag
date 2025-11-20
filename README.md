@@ -39,6 +39,17 @@
     $ flask --app pictag run
     ```
 
+### Dockerを使う場合
+1. リポジトリをクローンして、プロジェクトディレクトリに移動
+1. Dockerコンテナを作成
+    ```pwsh
+    $ docker build -t pictag:latest .
+    ```
+1. Dockerコンテナを起動
+    ```pwsh
+    $ docker run -d -p 5000:5000 pictag:latest
+    ```
+
 ## 3. 学びと課題 (Key Takeaways & Challenges)
 - 学んだこと:
     - Web 開発の知識が少ない状態から、サーバーレスポンス、ルーティング、テンプレート処理（Jinja2）といった Web の基本構成を習得しました。
